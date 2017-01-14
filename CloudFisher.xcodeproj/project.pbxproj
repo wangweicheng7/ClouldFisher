@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC08F7831E11811F0035367A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08F7821E11811F0035367A /* Kingfisher.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		BC08F7851E1181250035367A /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08F7841E1181250035367A /* ObjectMapper.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		BC08F7871E11812E0035367A /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08F7861E11812E0035367A /* SQLite.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BC005E5D1E21125D00B56546 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC005E5C1E21125D00B56546 /* ObjectMapper.framework */; };
+		BC005E5E1E21125D00B56546 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC005E5C1E21125D00B56546 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BC08F78A1E1183B70035367A /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08F7891E1183B70035367A /* constant.swift */; };
-		BC08F78B1E1186F70035367A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08F77E1E1181160035367A /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC08F78D1E12B9CB0035367A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08F78C1E12B9CB0035367A /* libsqlite3.0.tbd */; };
+		BC5156841E291752008B70A0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5156831E291752008B70A0 /* Alamofire.framework */; };
+		BC5156851E291752008B70A0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC5156831E291752008B70A0 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BCCCEC8B1E1172C900C19249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCEC8A1E1172C900C19249 /* AppDelegate.swift */; };
 		BCCCEC8D1E1172C900C19249 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCEC8C1E1172C900C19249 /* ViewController.swift */; };
 		BCCCEC901E1172C900C19249 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCCCEC8E1E1172C900C19249 /* Main.storyboard */; };
@@ -23,16 +23,32 @@
 		BCCCECA81E1174AC00C19249 /* PWSquareTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCCCECA61E1174AC00C19249 /* PWSquareTableViewCell.xib */; };
 		BCCCECAA1E1174B500C19249 /* PWServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECA91E1174B500C19249 /* PWServiceManager.swift */; };
 		BCCCECAC1E1174C200C19249 /* PWAppInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */; };
+		BCDCBE9D1E2A680E00C04471 /* PWDayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */; };
+		BCDCBEA21E2A6C9000C04471 /* Refresher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BCDCBEA01E2A6C9000C04471 /* Refresher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BC9066F41E20F48A0060671B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BC005E5E1E21125D00B56546 /* ObjectMapper.framework in Embed Frameworks */,
+				BCDCBEA21E2A6C9000C04471 /* Refresher.framework in Embed Frameworks */,
+				BC5156851E291752008B70A0 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		BC08F77E1E1181160035367A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../../Downloads/firimer/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		BC08F7801E1181190035367A /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = ../../Downloads/firimer/Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
-		BC08F7821E11811F0035367A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = ../../Downloads/firimer/Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
-		BC08F7841E1181250035367A /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = ../../Downloads/firimer/Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
-		BC08F7861E11812E0035367A /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = ../../Downloads/firimer/Carthage/Build/iOS/SQLite.framework; sourceTree = "<group>"; };
+		BC005E5C1E21125D00B56546 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		BC005E5F1E211BB500B56546 /* CloudFisher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CloudFisher.entitlements; sourceTree = "<group>"; };
 		BC08F7891E1183B70035367A /* constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
 		BC08F78C1E12B9CB0035367A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		BC5156831E291752008B70A0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		BCCCEC871E1172C900C19249 /* CloudFisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudFisher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCCEC8A1E1172C900C19249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCCCEC8C1E1172C900C19249 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +61,8 @@
 		BCCCECA61E1174AC00C19249 /* PWSquareTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PWSquareTableViewCell.xib; path = Class/Square/View/PWSquareTableViewCell.xib; sourceTree = "<group>"; };
 		BCCCECA91E1174B500C19249 /* PWServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWServiceManager.swift; path = Class/Square/Request/PWServiceManager.swift; sourceTree = "<group>"; };
 		BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWAppInfoModel.swift; path = Class/Square/Model/PWAppInfoModel.swift; sourceTree = "<group>"; };
+		BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWDayHeaderView.swift; path = Class/Square/View/PWDayHeaderView.swift; sourceTree = "<group>"; };
+		BCDCBEA01E2A6C9000C04471 /* Refresher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Refresher.framework; path = /Users/weicheng/Desktop/ClouldFisher/Refresher.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +70,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC005E5D1E21125D00B56546 /* ObjectMapper.framework in Frameworks */,
+				BC5156841E291752008B70A0 /* Alamofire.framework in Frameworks */,
 				BC08F78D1E12B9CB0035367A /* libsqlite3.0.tbd in Frameworks */,
-				BC08F78B1E1186F70035367A /* Alamofire.framework in Frameworks */,
-				BC08F7831E11811F0035367A /* Kingfisher.framework in Frameworks */,
-				BC08F7851E1181250035367A /* ObjectMapper.framework in Frameworks */,
-				BC08F7871E11812E0035367A /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +82,9 @@
 		BC08F77D1E1181160035367A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC5156831E291752008B70A0 /* Alamofire.framework */,
+				BC005E5C1E21125D00B56546 /* ObjectMapper.framework */,
 				BC08F78C1E12B9CB0035367A /* libsqlite3.0.tbd */,
-				BC08F7861E11812E0035367A /* SQLite.framework */,
-				BC08F7841E1181250035367A /* ObjectMapper.framework */,
-				BC08F7821E11811F0035367A /* Kingfisher.framework */,
-				BC08F7801E1181190035367A /* AlamofireObjectMapper.framework */,
-				BC08F77E1E1181160035367A /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,6 +117,7 @@
 		BCCCEC891E1172C900C19249 /* CloudFisher */ = {
 			isa = PBXGroup;
 			children = (
+				BC005E5F1E211BB500B56546 /* CloudFisher.entitlements */,
 				BCCCECA21E11747500C19249 /* DB */,
 				BCCCEC9C1E11733300C19249 /* Class */,
 				BCCCEC8A1E1172C900C19249 /* AppDelegate.swift */,
@@ -164,6 +178,7 @@
 			children = (
 				BCCCECA51E1174AC00C19249 /* PWSquareTableViewCell.swift */,
 				BCCCECA61E1174AC00C19249 /* PWSquareTableViewCell.xib */,
+				BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -186,6 +201,7 @@
 				BCCCEC831E1172C900C19249 /* Sources */,
 				BCCCEC841E1172C900C19249 /* Frameworks */,
 				BCCCEC851E1172C900C19249 /* Resources */,
+				BC9066F41E20F48A0060671B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -210,6 +226,14 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LPB4TVRAHH;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -251,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCCCEC8D1E1172C900C19249 /* ViewController.swift in Sources */,
+				BCDCBE9D1E2A680E00C04471 /* PWDayHeaderView.swift in Sources */,
 				BC08F78A1E1183B70035367A /* constant.swift in Sources */,
 				BCCCECA71E1174AC00C19249 /* PWSquareTableViewCell.swift in Sources */,
 				BCCCECAC1E1174C200C19249 /* PWAppInfoModel.swift in Sources */,
@@ -377,10 +402,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CloudFisher/CloudFisher.entitlements;
 				DEVELOPMENT_TEAM = LPB4TVRAHH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(SRCROOT)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CloudFisher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -395,10 +422,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CloudFisher/CloudFisher.entitlements;
 				DEVELOPMENT_TEAM = LPB4TVRAHH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(SRCROOT)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CloudFisher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

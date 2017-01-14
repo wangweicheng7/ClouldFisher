@@ -7,36 +7,45 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    var dataSource = [PWAppInfoModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        title = "广场"
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PWSquareTableViewCell", bundle:nil), forCellReuseIdentifier: PWSquareTableViewCell.IdeSquareTableViewCell())
         
-        PWServiceManager.appList { (result, success, code) in
-            
+        PWRequest.request(with: Api.app_list, parameter: nil, to: "") { (result, success, code) in
+            guard let list = result as? [[String:Any]] else {
+                return
+            }
+            for a in list {
+                let model = PWAppInfoModel(JSON: a)
+                self.dataSource.append(model!)
+            }
+            self.tableView.reloadData()
         }
         
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PWSquareTableViewCell.IdeSquareTableViewCell(), for: indexPath) as! PWSquareTableViewCell
-        
-        return UITableViewCell()
+        cell.model = dataSource[indexPath.row]
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 200
     }
 
 }

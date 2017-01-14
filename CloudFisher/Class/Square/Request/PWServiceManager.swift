@@ -7,21 +7,47 @@
 //
 
 import UIKit
-//import Alamofire
+import Alamofire
 
-typealias PWServiceCallback = (_ result: AnyObject?, _ success: Bool, _ responseCode: Int) -> ()
+typealias PWServiceCallback = (_ result: Any?, _ success: Bool, _ responseCode: Int) -> ()
 
 
-class PWServiceManager {
+class PWRequest {
     
-    class func appList(completion: PWServiceCallback) {
+    class func request<T>(with path: String, parameter: [String: Any]?,to model: T, _ callback: @escaping PWServiceCallback) {
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 10
+        manager.session.configuration.timeoutIntervalForResource = 10
+        
+        
+        Alamofire.request(Api.baseUrl + path, method: .get, parameters:parameter).responseJSON { (response) in
+            guard let res = response.result.value else {
+                return
+            }
+            callback(res, true, 200)
+        }
+    }
+    
+    class func heartBeats(_ callback: @escaping PWServiceCallback) {
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 10
+        manager.session.configuration.timeoutIntervalForResource = 10
+        
+        Alamofire.request(Api.baseUrl + "", method: .get, parameters:nil).responseJSON { (response) in
+            guard let res = response.result.value else {
+                return
+            }
+            callback(res, true, 200)
+        }
+    }
+}
         
 //        PWServiceManager.baseRequest(.get, URLString: "\(apps_list)/\(app_id)", parameters: nil, completionHandler: {(request, response, data, error) in
 //            
 //            
 //        })
         
-    }
+
         
 //    class func baseRequest(_ method: HTTPMethod, URLString: String, parameters: [String: Any]? = nil, completionHandler: @escaping (URLRequest?, DefaultDataResponse?, Data?, Error?) -> Void) {
         /*
@@ -50,5 +76,3 @@ class PWServiceManager {
             completionHandler(response.request, response, response.data, response.error)
         }*/
 //    }
-
-}
