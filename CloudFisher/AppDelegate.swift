@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("用户允许通知")
                 } else {
                     print("用户禁止通知")
-                    print("")
                 }
             })
         } else {
@@ -50,6 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\(deviceToken)")
         let deviceToken = String(describing: deviceToken)
         print(deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        print(notification.alertBody ?? "")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

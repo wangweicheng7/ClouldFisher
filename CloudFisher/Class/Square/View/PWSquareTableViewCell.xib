@@ -33,19 +33,19 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhV-Bz-jq9">
-                        <rect key="frame" x="99.5" y="9" width="42" height="14"/>
+                        <rect key="frame" x="99.5" y="9" width="142" height="14.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="42" id="vyY-83-0hs"/>
+                            <constraint firstAttribute="width" constant="142" id="vyY-83-0hs"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.68235294120000001" green="0.68235294120000001" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4G-Y3-WWE">
-                        <rect key="frame" x="58" y="33" width="254" height="126"/>
+                        <rect key="frame" x="58" y="33.5" width="254" height="125.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBn-HV-DNW">
-                                <rect key="frame" x="0.0" y="0.0" width="5" height="126"/>
+                                <rect key="frame" x="0.0" y="0.0" width="5" height="125.5"/>
                                 <color key="backgroundColor" red="1" green="0.17917209200000001" blue="0.43047417529999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="5" id="VKI-96-cl8"/>

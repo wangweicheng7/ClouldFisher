@@ -21,10 +21,10 @@ class PWRequest {
         
         
         Alamofire.request(Api.baseUrl + path, method: .get, parameters:parameter).responseJSON { (response) in
-            guard let res = response.result.value else {
+            guard let res = response.result.value as? [String: Any] else {
                 return
             }
-            callback(res, true, 200)
+            callback(res["data"], true, 200)
         }
     }
     

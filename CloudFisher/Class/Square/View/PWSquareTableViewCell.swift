@@ -30,7 +30,20 @@ class PWSquareTableViewCell: UITableViewCell {
                 versionLabel.text = "\(version)"
             }
             
-            noteLabel.text  = _model?.msg
+            if let type = _model?.type {
+                typeLabel.text = (type == 1) ? " 测试版 " : " 线上版 " // 边距用空格占位
+            }
+            
+            if let time = _model?.create_time {
+                
+                let date = Date(timeIntervalSince1970: time)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm MM.dd"
+                timeLabel.text = formatter.string(from: date)
+            }
+            
+            
+            noteLabel.text  = _model?.note
             
         }
     }
@@ -49,8 +62,6 @@ class PWSquareTableViewCell: UITableViewCell {
         // Initialization code
         infoView.layer.cornerRadius = 3
         infoView.layer.masksToBounds = true
-        infoView.layer.borderWidth = 1
-        infoView.layer.borderColor = UIColor.darkGray.cgColor
     }
 
     @IBAction func installAction(_ sender: Any) {
@@ -74,9 +85,6 @@ class PWSquareTableViewCell: UITableViewCell {
             UIApplication.shared.openURL(url)
         }else{
             print("下载失败")
-//            let alert = UIAlertController(title: "提示", message: "下载失败，请重试", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "我知道了", style: .cancel, handler: nil))
-            
         }
     }
 }

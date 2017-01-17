@@ -19,20 +19,24 @@ struct PWAppInfoModel: Mappable {
     var build:  Int?
     var appid:  Int?
     var icon:   String?
-    var msg:    String?
+    var note:    String?
     var version: String?
     var name:	String?
+    var type:   Int = 0
+    var create_time: Double = 0
+    
     
     
     mutating func mapping(map: Map) {
         id      <- map["id"]
         name    <- map["name"]
-        msg     <- map["msg"]
+        note    <- map["note"]
         icon    <- map["icon"]
         appid   <- map["appid"]
         build   <- map["build"]
         version <- map["version"]
+        type    <- map["type"]
+        create_time <- map["create_time"]
     }
-    
-    
 }
+

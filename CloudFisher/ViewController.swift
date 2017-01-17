@@ -20,18 +20,61 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PWSquareTableViewCell", bundle:nil), forCellReuseIdentifier: PWSquareTableViewCell.IdeSquareTableViewCell())
+        automaticallyAdjustsScrollViewInsets = false
         
-        PWRequest.request(with: Api.app_list, parameter: nil, to: "") { (result, success, code) in
+        
+        
+        tableView.toLoadMoreAction { [weak self] in
+            let lastInfo = self?.dataSource.last
+            self?.requestData(with: lastInfo?.id)
+        }
+        
+        requestData(with: nil)
+        
+        localNotification.fireDate = Date(timeIntervalSinceNow: 5)
+        self.localNotification.alertBody = "\("葡萄维度") 发布新版本了，快来看看吧~"
+        UIApplication.shared.scheduleLocalNotification(self.localNotification)
+        
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 5) {
+            
+            
+        }
+    }
+    
+    var localNotification: UILocalNotification = {
+        let localNotification = UILocalNotification()
+        localNotification.alertAction = ""
+        localNotification.hasAction = true
+        localNotification.alertLaunchImage = ""
+        localNotification.alertTitle = "新消息"
+        localNotification.applicationIconBadgeNumber = 1
+        return localNotification
+    }()
+    
+    func requestData(with id: Int?) {
+        
+        var parameter = [String: Any]()
+        if let id = id {
+            parameter["id"] = id
+        }
+        
+        PWRequest.request(with: Api.app_list, parameter: parameter, to: "") { (result, success, code) in
+            
+            self.tableView.stopAnimation()
             guard let list = result as? [[String:Any]] else {
                 return
             }
             for a in list {
-                let model = PWAppInfoModel(JSON: a)
-                self.dataSource.append(model!)
+                if let model = PWAppInfoModel(JSON: a) {
+                    self.dataSource.append(model)
+                }
+                if let id = id {
+                    
+                }
             }
             self.tableView.reloadData()
+            
         }
-        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,7 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 180
     }
 
 }

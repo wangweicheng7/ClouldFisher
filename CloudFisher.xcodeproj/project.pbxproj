@@ -24,7 +24,13 @@
 		BCCCECAA1E1174B500C19249 /* PWServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECA91E1174B500C19249 /* PWServiceManager.swift */; };
 		BCCCECAC1E1174C200C19249 /* PWAppInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */; };
 		BCDCBE9D1E2A680E00C04471 /* PWDayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */; };
-		BCDCBEA21E2A6C9000C04471 /* Refresher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BCDCBEA01E2A6C9000C04471 /* Refresher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA4602491E2DED0500DC4CE2 /* ZLSwiftFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602451E2DED0500DC4CE2 /* ZLSwiftFootView.swift */; };
+		EA46024A1E2DED0500DC4CE2 /* ZLSwiftHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602461E2DED0500DC4CE2 /* ZLSwiftHeadView.swift */; };
+		EA46024B1E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602471E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift */; };
+		EA46024F1E2E20EA00DC4CE2 /* BigGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46024C1E2E20EA00DC4CE2 /* BigGear.swift */; };
+		EA4602501E2E20EA00DC4CE2 /* GearRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46024D1E2E20EA00DC4CE2 /* GearRefreshControl.swift */; };
+		EA4602511E2E20EA00DC4CE2 /* MainGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46024E1E2E20EA00DC4CE2 /* MainGear.swift */; };
+		EA6106DF1E2C7ABD0050A231 /* PWRequestMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6106DE1E2C7ABD0050A231 /* PWRequestMappable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,7 +41,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BC005E5E1E21125D00B56546 /* ObjectMapper.framework in Embed Frameworks */,
-				BCDCBEA21E2A6C9000C04471 /* Refresher.framework in Embed Frameworks */,
 				BC5156851E291752008B70A0 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -62,7 +67,13 @@
 		BCCCECA91E1174B500C19249 /* PWServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWServiceManager.swift; path = Class/Square/Request/PWServiceManager.swift; sourceTree = "<group>"; };
 		BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWAppInfoModel.swift; path = Class/Square/Model/PWAppInfoModel.swift; sourceTree = "<group>"; };
 		BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWDayHeaderView.swift; path = Class/Square/View/PWDayHeaderView.swift; sourceTree = "<group>"; };
-		BCDCBEA01E2A6C9000C04471 /* Refresher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Refresher.framework; path = /Users/weicheng/Desktop/ClouldFisher/Refresher.framework; sourceTree = "<absolute>"; };
+		EA4602451E2DED0500DC4CE2 /* ZLSwiftFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftFootView.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftFootView.swift; sourceTree = "<group>"; };
+		EA4602461E2DED0500DC4CE2 /* ZLSwiftHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftHeadView.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftHeadView.swift; sourceTree = "<group>"; };
+		EA4602471E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftRefreshExtension.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftRefreshExtension.swift; sourceTree = "<group>"; };
+		EA46024C1E2E20EA00DC4CE2 /* BigGear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigGear.swift; sourceTree = "<group>"; };
+		EA46024D1E2E20EA00DC4CE2 /* GearRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearRefreshControl.swift; sourceTree = "<group>"; };
+		EA46024E1E2E20EA00DC4CE2 /* MainGear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGear.swift; sourceTree = "<group>"; };
+		EA6106DE1E2C7ABD0050A231 /* PWRequestMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWRequestMappable.swift; path = Class/Square/Model/PWRequestMappable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +128,7 @@
 		BCCCEC891E1172C900C19249 /* CloudFisher */ = {
 			isa = PBXGroup;
 			children = (
+				EA46023F1E2DEC9800DC4CE2 /* Vendor */,
 				BC005E5F1E211BB500B56546 /* CloudFisher.entitlements */,
 				BCCCECA21E11747500C19249 /* DB */,
 				BCCCEC9C1E11733300C19249 /* Class */,
@@ -161,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */,
+				EA6106DE1E2C7ABD0050A231 /* PWRequestMappable.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -189,6 +202,27 @@
 				BCCCECA31E11748300C19249 /* PWDBManager.swift */,
 			);
 			name = DB;
+			sourceTree = "<group>";
+		};
+		EA46023F1E2DEC9800DC4CE2 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				EA4602431E2DECF200DC4CE2 /* RefreshControl */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		EA4602431E2DECF200DC4CE2 /* RefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				EA46024C1E2E20EA00DC4CE2 /* BigGear.swift */,
+				EA46024D1E2E20EA00DC4CE2 /* GearRefreshControl.swift */,
+				EA46024E1E2E20EA00DC4CE2 /* MainGear.swift */,
+				EA4602451E2DED0500DC4CE2 /* ZLSwiftFootView.swift */,
+				EA4602461E2DED0500DC4CE2 /* ZLSwiftHeadView.swift */,
+				EA4602471E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift */,
+			);
+			name = RefreshControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,12 +308,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA4602491E2DED0500DC4CE2 /* ZLSwiftFootView.swift in Sources */,
 				BCCCEC8D1E1172C900C19249 /* ViewController.swift in Sources */,
 				BCDCBE9D1E2A680E00C04471 /* PWDayHeaderView.swift in Sources */,
 				BC08F78A1E1183B70035367A /* constant.swift in Sources */,
+				EA46024A1E2DED0500DC4CE2 /* ZLSwiftHeadView.swift in Sources */,
+				EA46024F1E2E20EA00DC4CE2 /* BigGear.swift in Sources */,
 				BCCCECA71E1174AC00C19249 /* PWSquareTableViewCell.swift in Sources */,
+				EA4602501E2E20EA00DC4CE2 /* GearRefreshControl.swift in Sources */,
 				BCCCECAC1E1174C200C19249 /* PWAppInfoModel.swift in Sources */,
+				EA6106DF1E2C7ABD0050A231 /* PWRequestMappable.swift in Sources */,
+				EA46024B1E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift in Sources */,
 				BCCCECA41E11748300C19249 /* PWDBManager.swift in Sources */,
+				EA4602511E2E20EA00DC4CE2 /* MainGear.swift in Sources */,
 				BCCCECAA1E1174B500C19249 /* PWServiceManager.swift in Sources */,
 				BCCCEC8B1E1172C900C19249 /* AppDelegate.swift in Sources */,
 			);
