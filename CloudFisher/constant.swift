@@ -6,6 +6,24 @@
 //  Copyright © 2016年 wangweicheng. All rights reserved.
 //
 
+import UIKit
+
+extension UIColor {
+    class var theme: UIColor {
+        return UIColor(red:0.36, green:0.52, blue:0.92, alpha:1)
+    }
+}
+
+extension Data {
+    var hexString: String {
+        return withUnsafeBytes {(bytes: UnsafePointer<UInt8>) -> String in
+            let buffer = UnsafeBufferPointer(start: bytes, count: count)
+            return buffer.map {String(format: "%02hhx", $0)}.reduce("", { $0 + $1 })
+        }
+    }
+}
+
+
 struct Api {
     
     static let baseUrl      = "https://putao.wangweicheng.com"

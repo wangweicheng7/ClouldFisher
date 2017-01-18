@@ -31,12 +31,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         requestData(with: nil)
         
-        localNotification.fireDate = Date(timeIntervalSinceNow: 5)
+//        localNotification.fireDate = Date(timeIntervalSinceNow: 5)
         self.localNotification.alertBody = "\("葡萄维度") 发布新版本了，快来看看吧~"
-        UIApplication.shared.scheduleLocalNotification(self.localNotification)
+        
         
         DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 5) {
-            
+                UIApplication.shared.scheduleLocalNotification(self.localNotification)
             
         }
     }
@@ -78,12 +78,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return 1//dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PWSquareTableViewCell.IdeSquareTableViewCell(), for: indexPath) as! PWSquareTableViewCell
-        cell.model = dataSource[indexPath.row]
+//        cell.model = dataSource[indexPath.row]
         return cell
     }
     

@@ -13,6 +13,8 @@
 		BC08F78D1E12B9CB0035367A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08F78C1E12B9CB0035367A /* libsqlite3.0.tbd */; };
 		BC5156841E291752008B70A0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5156831E291752008B70A0 /* Alamofire.framework */; };
 		BC5156851E291752008B70A0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC5156831E291752008B70A0 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BCA11DE71E2FC9E2009D8BB2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA11DE61E2FC9E2009D8BB2 /* NotificationService.swift */; };
+		BCA11DEB1E2FC9E2009D8BB2 /* Notification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BCA11DE41E2FC9E2009D8BB2 /* Notification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BCCCEC8B1E1172C900C19249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCEC8A1E1172C900C19249 /* AppDelegate.swift */; };
 		BCCCEC8D1E1172C900C19249 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCEC8C1E1172C900C19249 /* ViewController.swift */; };
 		BCCCEC901E1172C900C19249 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCCCEC8E1E1172C900C19249 /* Main.storyboard */; };
@@ -33,6 +35,16 @@
 		EA6106DF1E2C7ABD0050A231 /* PWRequestMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6106DE1E2C7ABD0050A231 /* PWRequestMappable.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BCA11DE91E2FC9E2009D8BB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCCCEC7F1E1172C900C19249 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCA11DE31E2FC9E2009D8BB2;
+			remoteInfo = Notification;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		BC9066F41E20F48A0060671B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -46,6 +58,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCA11DEF1E2FC9E2009D8BB2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BCA11DEB1E2FC9E2009D8BB2 /* Notification.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +77,9 @@
 		BC08F7891E1183B70035367A /* constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
 		BC08F78C1E12B9CB0035367A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		BC5156831E291752008B70A0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		BCA11DE41E2FC9E2009D8BB2 /* Notification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Notification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCA11DE61E2FC9E2009D8BB2 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		BCA11DE81E2FC9E2009D8BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCCCEC871E1172C900C19249 /* CloudFisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudFisher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCCEC8A1E1172C900C19249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCCCEC8C1E1172C900C19249 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +103,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BCA11DE11E2FC9E2009D8BB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BCCCEC841E1172C900C19249 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -108,10 +141,20 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		BCA11DE51E2FC9E2009D8BB2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				BCA11DE61E2FC9E2009D8BB2 /* NotificationService.swift */,
+				BCA11DE81E2FC9E2009D8BB2 /* Info.plist */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		BCCCEC7E1E1172C900C19249 = {
 			isa = PBXGroup;
 			children = (
 				BCCCEC891E1172C900C19249 /* CloudFisher */,
+				BCA11DE51E2FC9E2009D8BB2 /* Notification */,
 				BCCCEC881E1172C900C19249 /* Products */,
 				BC08F77D1E1181160035367A /* Frameworks */,
 			);
@@ -121,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				BCCCEC871E1172C900C19249 /* CloudFisher.app */,
+				BCA11DE41E2FC9E2009D8BB2 /* Notification.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,6 +272,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BCA11DE31E2FC9E2009D8BB2 /* Notification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCA11DEE1E2FC9E2009D8BB2 /* Build configuration list for PBXNativeTarget "Notification" */;
+			buildPhases = (
+				BCA11DE01E2FC9E2009D8BB2 /* Sources */,
+				BCA11DE11E2FC9E2009D8BB2 /* Frameworks */,
+				BCA11DE21E2FC9E2009D8BB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Notification;
+			productName = Notification;
+			productReference = BCA11DE41E2FC9E2009D8BB2 /* Notification.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		BCCCEC861E1172C900C19249 /* CloudFisher */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCCCEC991E1172C900C19249 /* Build configuration list for PBXNativeTarget "CloudFisher" */;
@@ -236,10 +297,12 @@
 				BCCCEC841E1172C900C19249 /* Frameworks */,
 				BCCCEC851E1172C900C19249 /* Resources */,
 				BC9066F41E20F48A0060671B /* Embed Frameworks */,
+				BCA11DEF1E2FC9E2009D8BB2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BCA11DEA1E2FC9E2009D8BB2 /* PBXTargetDependency */,
 			);
 			name = CloudFisher;
 			productName = CloudFisher;
@@ -252,10 +315,15 @@
 		BCCCEC7F1E1172C900C19249 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "weicheng wang";
 				TargetAttributes = {
+					BCA11DE31E2FC9E2009D8BB2 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = LPB4TVRAHH;
+						ProvisioningStyle = Automatic;
+					};
 					BCCCEC861E1172C900C19249 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LPB4TVRAHH;
@@ -285,11 +353,19 @@
 			projectRoot = "";
 			targets = (
 				BCCCEC861E1172C900C19249 /* CloudFisher */,
+				BCA11DE31E2FC9E2009D8BB2 /* Notification */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BCA11DE21E2FC9E2009D8BB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BCCCEC851E1172C900C19249 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +380,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BCA11DE01E2FC9E2009D8BB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCA11DE71E2FC9E2009D8BB2 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BCCCEC831E1172C900C19249 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,6 +412,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BCA11DEA1E2FC9E2009D8BB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCA11DE31E2FC9E2009D8BB2 /* Notification */;
+			targetProxy = BCA11DE91E2FC9E2009D8BB2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		BCCCEC8E1E1172C900C19249 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -348,6 +440,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BCA11DEC1E2FC9E2009D8BB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = LPB4TVRAHH;
+				INFOPLIST_FILE = Notification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.clouldfisher.pw.Notification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BCA11DED1E2FC9E2009D8BB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = LPB4TVRAHH;
+				INFOPLIST_FILE = Notification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.clouldfisher.pw.Notification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		BCCCEC971E1172C900C19249 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -442,6 +564,7 @@
 		BCCCEC9A1E1172C900C19249 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CloudFisher/CloudFisher.entitlements;
 				DEVELOPMENT_TEAM = LPB4TVRAHH;
@@ -462,6 +585,7 @@
 		BCCCEC9B1E1172C900C19249 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CloudFisher/CloudFisher.entitlements;
 				DEVELOPMENT_TEAM = LPB4TVRAHH;
@@ -482,6 +606,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BCA11DEE1E2FC9E2009D8BB2 /* Build configuration list for PBXNativeTarget "Notification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCA11DEC1E2FC9E2009D8BB2 /* Debug */,
+				BCA11DED1E2FC9E2009D8BB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		BCCCEC821E1172C900C19249 /* Build configuration list for PBXProject "CloudFisher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

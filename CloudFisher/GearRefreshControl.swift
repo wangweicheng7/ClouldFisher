@@ -89,12 +89,12 @@ class GearRefreshView: UIView {
      - Parameter scrollView: The scrollview being observed
      */
     
-    func animate(with contentOffset: CGFloat) {
+    func animate(with distance: CGFloat) {
         
         var refreshBounds = bounds;
         
         // Distance the table has been pulled
-        let pullDistance = max(0.0, (contentOffset * 0.7) - ZLSwithRefreshFootViewHeight);
+        let pullDistance = max(0.0, distance);
         let pullRatio = min(max(pullDistance, 0.0), 140.0) / 140.0;
         
         overlayView.alpha = 1 - pullRatio
@@ -137,7 +137,7 @@ fileprivate extension GearRefreshView {
 
         shadowView.frame = self.bounds
 
-        gearTintColor = UIColor(red:0.36, green:0.52, blue:0.92, alpha:1)
+        gearTintColor = UIColor.theme
 
         centerGear.center = CGPoint(x: self.refreshContainerView.frame.midX, y: self.refreshContainerView.frame.midY)
         topGear.center = CGPoint(x: self.refreshContainerView.frame.midX + 48, y: self.refreshContainerView.frame.midY - 49)
