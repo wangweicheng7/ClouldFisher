@@ -110,8 +110,9 @@ extension UIScrollView: UIScrollViewDelegate {
             let nowContentOffsetY:CGFloat = scrollView.contentOffset.y + self.frame.size.height
             let tableViewMaxHeight:CGFloat = tempTableView.tableFooterView!.frame.midY
             
-            
-            footView.gearRefreshView.animate(with: scrollView.contentOffset.y )
+            print(scrollView.contentOffset.y)
+            print(scrollView.contentSize.height)
+            footView.gearRefreshView.animate(with: scrollView.contentOffset.y - scrollView.contentSize.height)
             
             if (nowContentOffsetY - tableViewMaxHeight) > ZLSwithRefreshFootViewHeight * 0.5{
                 if scrollView.isDragging == false {
