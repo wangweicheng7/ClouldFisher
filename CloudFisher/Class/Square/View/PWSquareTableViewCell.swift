@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PWSquareTableViewCell: UITableViewCell {
 
@@ -42,9 +43,12 @@ class PWSquareTableViewCell: UITableViewCell {
                 timeLabel.text = formatter.string(from: date)
             }
             
-            
             noteLabel.text  = _model?.note
             
+            if let icon = _model?.appid {
+                let url =  URL(string: Api.baseUrl + Api.image + "\(icon).png")
+                iconImageView.kf.setImage(with: url, placeholder: UIImage(named: "icon"))
+            }
         }
     }
     

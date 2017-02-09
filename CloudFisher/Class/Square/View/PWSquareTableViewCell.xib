@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4G-Y3-WWE">
-                        <rect key="frame" x="58" y="33.5" width="254" height="125.5"/>
+                        <rect key="frame" x="58" y="33.5" width="262" height="125.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBn-HV-DNW">
                                 <rect key="frame" x="0.0" y="0.0" width="5" height="125.5"/>
@@ -79,13 +79,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a57-5o-LaC">
-                                <rect key="frame" x="161" y="15" width="33" height="17"/>
+                                <rect key="frame" x="169" y="15" width="33" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZD-kE-X8N">
-                                <rect key="frame" x="161" y="42" width="44" height="44"/>
+                                <rect key="frame" x="169" y="42" width="44" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.47058823529411764" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BZD-kE-X8N" secondAttribute="height" multiplier="1:1" id="Hnl-7Z-Hbb"/>
@@ -106,13 +106,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="In3-MG-qc0">
-                                <rect key="frame" x="209" y="15" width="7" height="17"/>
+                                <rect key="frame" x="217" y="15" width="7" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新版本发布，请下载" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDZ-xb-vaq">
-                                <rect key="frame" x="15" y="96" width="224" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新版本发布，请下载" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDZ-xb-vaq">
+                                <rect key="frame" x="15" y="96" width="232" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -124,7 +124,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.14901960784313725" green="0.4392156862745098" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="egt-yi-c1X" firstAttribute="leading" secondItem="jBn-HV-DNW" secondAttribute="trailing" constant="10" id="3wx-ZH-GVY"/>
@@ -176,7 +176,7 @@
                     <constraint firstItem="UAA-Dy-3aY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="kWb-Fw-W4M"/>
                     <constraint firstItem="BLn-Ct-QfM" firstAttribute="leading" secondItem="UAA-Dy-3aY" secondAttribute="trailing" constant="10" id="mfL-tE-LGX"/>
                     <constraint firstItem="X4G-Y3-WWE" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="nVd-Kk-WDl"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="X4G-Y3-WWE" secondAttribute="trailing" id="nxQ-1t-ShC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="X4G-Y3-WWE" secondAttribute="trailing" constant="-8" id="nxQ-1t-ShC"/>
                     <constraint firstItem="ZhV-Bz-jq9" firstAttribute="centerY" secondItem="BLn-Ct-QfM" secondAttribute="centerY" id="pb1-2M-bPC"/>
                 </constraints>
             </tableViewCellContentView>

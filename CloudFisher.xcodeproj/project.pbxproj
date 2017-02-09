@@ -26,6 +26,8 @@
 		BCCCECAA1E1174B500C19249 /* PWServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECA91E1174B500C19249 /* PWServiceManager.swift */; };
 		BCCCECAC1E1174C200C19249 /* PWAppInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */; };
 		BCDCBE9D1E2A680E00C04471 /* PWDayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */; };
+		EA22E9131E3097400085550A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA22E9121E3097400085550A /* Kingfisher.framework */; };
+		EA22E9141E3097400085550A /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA22E9121E3097400085550A /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA4602491E2DED0500DC4CE2 /* ZLSwiftFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602451E2DED0500DC4CE2 /* ZLSwiftFootView.swift */; };
 		EA46024A1E2DED0500DC4CE2 /* ZLSwiftHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602461E2DED0500DC4CE2 /* ZLSwiftHeadView.swift */; };
 		EA46024B1E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602471E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift */; };
@@ -53,6 +55,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BC005E5E1E21125D00B56546 /* ObjectMapper.framework in Embed Frameworks */,
+				EA22E9141E3097400085550A /* Kingfisher.framework in Embed Frameworks */,
 				BC5156851E291752008B70A0 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -93,6 +96,7 @@
 		BCCCECA91E1174B500C19249 /* PWServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWServiceManager.swift; path = Class/Square/Request/PWServiceManager.swift; sourceTree = "<group>"; };
 		BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWAppInfoModel.swift; path = Class/Square/Model/PWAppInfoModel.swift; sourceTree = "<group>"; };
 		BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWDayHeaderView.swift; path = Class/Square/View/PWDayHeaderView.swift; sourceTree = "<group>"; };
+		EA22E9121E3097400085550A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		EA4602451E2DED0500DC4CE2 /* ZLSwiftFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftFootView.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftFootView.swift; sourceTree = "<group>"; };
 		EA4602461E2DED0500DC4CE2 /* ZLSwiftHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftHeadView.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftHeadView.swift; sourceTree = "<group>"; };
 		EA4602471E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftRefreshExtension.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftRefreshExtension.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			files = (
 				BC005E5D1E21125D00B56546 /* ObjectMapper.framework in Frameworks */,
 				BC5156841E291752008B70A0 /* Alamofire.framework in Frameworks */,
+				EA22E9131E3097400085550A /* Kingfisher.framework in Frameworks */,
 				BC08F78D1E12B9CB0035367A /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +158,7 @@
 		BCCCEC7E1E1172C900C19249 = {
 			isa = PBXGroup;
 			children = (
+				EA22E9121E3097400085550A /* Kingfisher.framework */,
 				BCCCEC891E1172C900C19249 /* CloudFisher */,
 				BCA11DE51E2FC9E2009D8BB2 /* Notification */,
 				BCCCEC881E1172C900C19249 /* Products */,
@@ -613,6 +619,7 @@
 				BCA11DED1E2FC9E2009D8BB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BCCCEC821E1172C900C19249 /* Build configuration list for PBXProject "CloudFisher" */ = {
 			isa = XCConfigurationList;

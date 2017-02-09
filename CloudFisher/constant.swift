@@ -30,5 +30,9 @@ struct Api {
     
     static let app_list     = "/app_list"
     
+    static let device_token = "/upload_token"
+    
     static let file         = "/file/"
+    
+    static let image        = "/image/"
 }

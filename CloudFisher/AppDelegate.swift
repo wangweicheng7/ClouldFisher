@@ -25,18 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             center.delegate = self
             center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (result, error) in
                 if result {
-                    
-                    print("用户允许通知")
                     UIApplication.shared.registerForRemoteNotifications()
-                } else {
-                    print("用户禁止通知")
                 }
             })
         } else {
             let settings = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-//        application.registerForRemoteNotifications()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         return true
     }
@@ -52,6 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print("\(deviceToken)")
         let str = deviceToken.hexString
+        
+        PWRequest.request(with: Api.device_token, parameter: ["device_token": str], to: "") { (result, success, code) in
+            if !success {
+                print("device_token 上传失败")
+            }
+        }
         print(str)
     }
     
@@ -81,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -101,7 +104,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
        
-        completionHandler([.alert, .sound])
+        completionHandler([.alert, .sound, .badge])
     }
 
 

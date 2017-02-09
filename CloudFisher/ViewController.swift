@@ -26,19 +26,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.toLoadMoreAction { [weak self] in
             let lastInfo = self?.dataSource.last
-            self?.requestData(with: lastInfo?.id)
+            self?.requestData(with: lastInfo?.id, desc: true)
         }
         
-        requestData(with: nil)
+        requestData(with: nil, desc: true)
         
 //        localNotification.fireDate = Date(timeIntervalSinceNow: 5)
-        self.localNotification.alertBody = "\("葡萄维度") 发布新版本了，快来看看吧~"
-        
-        
-        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 5) {
-                UIApplication.shared.scheduleLocalNotification(self.localNotification)
-            
-        }
+//        self.localNotification.alertBody = "\("葡萄维度") 发布新版本了，快来看看吧~"
+//        
+//        
+//        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 5) {
+//                UIApplication.shared.scheduleLocalNotification(self.localNotification)
+//            
+//        }
     }
     
     var localNotification: UILocalNotification = {
@@ -50,15 +50,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         localNotification.applicationIconBadgeNumber = 1
         return localNotification
     }()
-    
-    func requestData(with id: Int?) {
+    /// id 起始id，desc，是否上拉
+    func requestData(with id: Int?, desc: Bool) {
         
         var parameter = [String: Any]()
         if let id = id {
             parameter["id"] = id
         }
+        parameter["pull"] = desc
         
-        PWRequest.request(with: Api.app_list, parameter: parameter, to: "") { (result, success, code) in
+        PWRequest.request(with: Api.app_list, parameter: parameter) { (result, success, code) in
             
             self.tableView.stopAnimation()
             guard let list = result as? [[String:Any]] else {
@@ -68,22 +69,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if let model = PWAppInfoModel(JSON: a) {
                     self.dataSource.append(model)
                 }
-                if let id = id {
-                    
-                }
+            }
+            
+            if self.dataSource.count == 0{
+                return
             }
             self.tableView.reloadData()
-            
+            self.tableView.scrollToRow(at: IndexPath(row: self.dataSource.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1//dataSource.count
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PWSquareTableViewCell.IdeSquareTableViewCell(), for: indexPath) as! PWSquareTableViewCell
-//        cell.model = dataSource[indexPath.row]
+        cell.model = dataSource[indexPath.row]
         return cell
     }
     

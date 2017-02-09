@@ -14,6 +14,10 @@ typealias PWServiceCallback = (_ result: Any?, _ success: Bool, _ responseCode: 
 
 class PWRequest {
     
+    class func request(with path: String, parameter: [String: Any]?, _ callback: @escaping PWServiceCallback) {
+        PWRequest.request(with: path, parameter: parameter, to: "", callback)
+    }
+    
     class func request<T>(with path: String, parameter: [String: Any]?,to model: T, _ callback: @escaping PWServiceCallback) {
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 10
@@ -22,6 +26,7 @@ class PWRequest {
         
         Alamofire.request(Api.baseUrl + path, method: .get, parameters:parameter).responseJSON { (response) in
             guard let res = response.result.value as? [String: Any] else {
+                callback([], false, 703)
                 return
             }
             callback(res["data"], true, 200)
