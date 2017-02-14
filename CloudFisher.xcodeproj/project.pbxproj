@@ -26,8 +26,13 @@
 		BCCCECAA1E1174B500C19249 /* PWServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECA91E1174B500C19249 /* PWServiceManager.swift */; };
 		BCCCECAC1E1174C200C19249 /* PWAppInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */; };
 		BCDCBE9D1E2A680E00C04471 /* PWDayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */; };
+		EA06E1931E4DCC5C0017B3F3 /* PWBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06E1921E4DCC5C0017B3F3 /* PWBadgeButton.swift */; };
 		EA22E9131E3097400085550A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA22E9121E3097400085550A /* Kingfisher.framework */; };
 		EA22E9141E3097400085550A /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA22E9121E3097400085550A /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA2965AF1E52C59C00D49606 /* PWSquareInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2965AE1E52C59C00D49606 /* PWSquareInfoView.swift */; };
+		EA2965B71E52D7EC00D49606 /* PWFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2965B61E52D7EC00D49606 /* PWFilterView.swift */; };
+		EA2965BA1E52D97F00D49606 /* PWFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2965B81E52D97F00D49606 /* PWFilterController.swift */; };
+		EA2965BB1E52D97F00D49606 /* PWFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2965B91E52D97F00D49606 /* PWFilterController.xib */; };
 		EA4602491E2DED0500DC4CE2 /* ZLSwiftFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602451E2DED0500DC4CE2 /* ZLSwiftFootView.swift */; };
 		EA46024A1E2DED0500DC4CE2 /* ZLSwiftHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602461E2DED0500DC4CE2 /* ZLSwiftHeadView.swift */; };
 		EA46024B1E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4602471E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift */; };
@@ -96,7 +101,12 @@
 		BCCCECA91E1174B500C19249 /* PWServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWServiceManager.swift; path = Class/Square/Request/PWServiceManager.swift; sourceTree = "<group>"; };
 		BCCCECAB1E1174C200C19249 /* PWAppInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWAppInfoModel.swift; path = Class/Square/Model/PWAppInfoModel.swift; sourceTree = "<group>"; };
 		BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWDayHeaderView.swift; path = Class/Square/View/PWDayHeaderView.swift; sourceTree = "<group>"; };
+		EA06E1921E4DCC5C0017B3F3 /* PWBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWBadgeButton.swift; path = Class/Square/View/PWBadgeButton.swift; sourceTree = "<group>"; };
 		EA22E9121E3097400085550A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		EA2965AE1E52C59C00D49606 /* PWSquareInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWSquareInfoView.swift; path = Class/Square/View/PWSquareInfoView.swift; sourceTree = "<group>"; };
+		EA2965B61E52D7EC00D49606 /* PWFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWFilterView.swift; path = Class/Square/View/PWFilterView.swift; sourceTree = "<group>"; };
+		EA2965B81E52D97F00D49606 /* PWFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PWFilterController.swift; path = Class/Square/Controller/PWFilterController.swift; sourceTree = "<group>"; };
+		EA2965B91E52D97F00D49606 /* PWFilterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PWFilterController.xib; path = Class/Square/Controller/PWFilterController.xib; sourceTree = "<group>"; };
 		EA4602451E2DED0500DC4CE2 /* ZLSwiftFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftFootView.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftFootView.swift; sourceTree = "<group>"; };
 		EA4602461E2DED0500DC4CE2 /* ZLSwiftHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftHeadView.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftHeadView.swift; sourceTree = "<group>"; };
 		EA4602471E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZLSwiftRefreshExtension.swift; path = Vendor/ZLSwifthRefresh/ZLSwiftRefreshExtension.swift; sourceTree = "<group>"; };
@@ -215,6 +225,8 @@
 		BCCCEC9E1E11735F00C19249 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA2965B81E52D97F00D49606 /* PWFilterController.swift */,
+				EA2965B91E52D97F00D49606 /* PWFilterController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -242,6 +254,9 @@
 				BCCCECA51E1174AC00C19249 /* PWSquareTableViewCell.swift */,
 				BCCCECA61E1174AC00C19249 /* PWSquareTableViewCell.xib */,
 				BCDCBE9C1E2A680E00C04471 /* PWDayHeaderView.swift */,
+				EA06E1921E4DCC5C0017B3F3 /* PWBadgeButton.swift */,
+				EA2965AE1E52C59C00D49606 /* PWSquareInfoView.swift */,
+				EA2965B61E52D7EC00D49606 /* PWFilterView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -377,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCCCEC951E1172C900C19249 /* LaunchScreen.storyboard in Resources */,
+				EA2965BB1E52D97F00D49606 /* PWFilterController.xib in Resources */,
 				BCCCECA81E1174AC00C19249 /* PWSquareTableViewCell.xib in Resources */,
 				BCCCEC921E1172C900C19249 /* Assets.xcassets in Resources */,
 				BCCCEC901E1172C900C19249 /* Main.storyboard in Resources */,
@@ -402,13 +418,17 @@
 				BCCCEC8D1E1172C900C19249 /* ViewController.swift in Sources */,
 				BCDCBE9D1E2A680E00C04471 /* PWDayHeaderView.swift in Sources */,
 				BC08F78A1E1183B70035367A /* constant.swift in Sources */,
+				EA06E1931E4DCC5C0017B3F3 /* PWBadgeButton.swift in Sources */,
+				EA2965BA1E52D97F00D49606 /* PWFilterController.swift in Sources */,
 				EA46024A1E2DED0500DC4CE2 /* ZLSwiftHeadView.swift in Sources */,
 				EA46024F1E2E20EA00DC4CE2 /* BigGear.swift in Sources */,
 				BCCCECA71E1174AC00C19249 /* PWSquareTableViewCell.swift in Sources */,
+				EA2965AF1E52C59C00D49606 /* PWSquareInfoView.swift in Sources */,
 				EA4602501E2E20EA00DC4CE2 /* GearRefreshControl.swift in Sources */,
 				BCCCECAC1E1174C200C19249 /* PWAppInfoModel.swift in Sources */,
 				EA6106DF1E2C7ABD0050A231 /* PWRequestMappable.swift in Sources */,
 				EA46024B1E2DED0500DC4CE2 /* ZLSwiftRefreshExtension.swift in Sources */,
+				EA2965B71E52D7EC00D49606 /* PWFilterView.swift in Sources */,
 				BCCCECA41E11748300C19249 /* PWDBManager.swift in Sources */,
 				EA4602511E2E20EA00DC4CE2 /* MainGear.swift in Sources */,
 				BCCCECAA1E1174B500C19249 /* PWServiceManager.swift in Sources */,

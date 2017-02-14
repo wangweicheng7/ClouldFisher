@@ -23,16 +23,20 @@ extension Data {
     }
 }
 
-
 struct Api {
     
     static let baseUrl      = "https://putao.wangweicheng.com"
     
     static let app_list     = "/app_list"
     
+    static let update       = "/update"
+    
     static let device_token = "/upload_token"
+    
+    static let notice       = "/notice_switch"
     
     static let file         = "/file/"
     
     static let image        = "/image/"
+    
 }

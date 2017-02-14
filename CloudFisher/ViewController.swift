@@ -11,7 +11,11 @@ import ObjectMapper
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    let infoView = PWSquareInfoView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 0))
+    
     var dataSource = [PWAppInfoModel]()
     
     override func viewDidLoad() {
@@ -22,23 +26,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.register(UINib(nibName: "PWSquareTableViewCell", bundle:nil), forCellReuseIdentifier: PWSquareTableViewCell.IdeSquareTableViewCell())
         automaticallyAdjustsScrollViewInsets = false
         
-        
-        
         tableView.toLoadMoreAction { [weak self] in
             let lastInfo = self?.dataSource.last
             self?.requestData(with: lastInfo?.id, desc: true)
         }
         
-        requestData(with: nil, desc: true)
+        tableView.toRefreshAction {
+            let filter = PWFilterController()
+            self.present(filter, animated: true, completion: nil)
+        }
         
-//        localNotification.fireDate = Date(timeIntervalSinceNow: 5)
-//        self.localNotification.alertBody = "\("葡萄维度") 发布新版本了，快来看看吧~"
-//        
-//        
-//        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 5) {
-//                UIApplication.shared.scheduleLocalNotification(self.localNotification)
-//            
-//        }
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            infoLabel.text = "putao.wangweicheng.com v \(version)"
+        }
+        
+        view.addSubview(infoView)
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "notice"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(noticeAction))
+        
+        requestData(with: nil, desc: true)
+        checkUpdate()
     }
     
     var localNotification: UILocalNotification = {
@@ -76,6 +83,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: self.dataSource.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+        }
+    }
+    
+    func checkUpdate() {
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] else {
+            return
+        }
+        
+        PWRequest.request(with: Api.update, parameter: ["version": version]) { (result, success, code) in
+            guard let info = result as? [String:Any] else {
+                return
+            }
+            if let update = info["update"] as? Bool, update {
+                
+                let alert = UIAlertController(title: "CloudFisher 有新版本可供使用，请及时更新", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "1小时后", style: UIAlertActionStyle.destructive, handler: { (action) in
+                    let date = Date(timeIntervalSinceNow: 3600)
+                    self.localNotification.fireDate = date
+                    self.localNotification.alertBody = "CloudFisher 有新版本可供使用，请及时更新"
+                    UIApplication.shared.scheduleLocalNotification(self.localNotification)
+                }))
+                
+                alert.addAction(UIAlertAction(title: "马上更新", style: UIAlertActionStyle.default, handler: { (action) in
+                    let urlString = "itms-services://?action=download-manifest&url=\(Api.baseUrl)/file/update.plist"
+                    if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.openURL(url)
+                    }
+                }))
+                
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 

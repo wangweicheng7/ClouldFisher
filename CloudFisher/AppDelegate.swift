@@ -25,22 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             center.delegate = self
             center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (result, error) in
                 if result {
-                    UIApplication.shared.registerForRemoteNotifications()
+                    application.registerForRemoteNotifications()
                 }
             })
         } else {
             let settings = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
             application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
         }
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         return true
     }
-    
-    func registerNotification(_ application: UIApplication) {
         
-    }
-    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         if deviceToken.count == 0 {
