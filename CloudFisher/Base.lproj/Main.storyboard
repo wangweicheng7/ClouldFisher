@@ -35,16 +35,35 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <sections/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nL6-CL-u0X">
+                                <rect key="frame" x="323" y="615" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="IEP-Tn-sfj"/>
+                                    <constraint firstAttribute="width" constant="44" id="Osg-8M-DV5"/>
+                                </constraints>
+                                <state key="normal" image="notice"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="filterAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4jR-ey-1tD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rwr-1M-VOf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7Rs-9o-OKC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rwr-1M-VOf" secondAttribute="bottom" id="B9B-4y-GhN"/>
                             <constraint firstItem="V9J-ab-96J" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="G0n-GW-sc2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nL6-CL-u0X" secondAttribute="bottom" constant="8" id="L2E-21-cEZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="V9J-ab-96J" secondAttribute="trailing" id="NZO-Y5-LK9"/>
                             <constraint firstAttribute="trailing" secondItem="rwr-1M-VOf" secondAttribute="trailing" id="V3Z-4b-IhK"/>
                             <constraint firstItem="rwr-1M-VOf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nil-sL-Wq1"/>
                             <constraint firstItem="V9J-ab-96J" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qpu-8V-g19"/>
+                            <constraint firstAttribute="trailing" secondItem="nL6-CL-u0X" secondAttribute="trailing" constant="8" id="tci-q5-dha"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="广场" id="Uua-eT-Yhl"/>
@@ -77,4 +96,7 @@
             <point key="canvasLocation" x="128.80000000000001" y="-546.47676161919048"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="notice" width="20" height="20"/>
+    </resources>
 </document>

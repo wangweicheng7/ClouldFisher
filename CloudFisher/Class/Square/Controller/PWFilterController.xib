@@ -10,40 +10,68 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PWFilterController" customModule="CloudFisher" customModuleProvider="target">
             <connections>
-                <outlet property="pickerBottomConstraint" destination="Ezm-uf-axD" id="ifI-4X-BTE"/>
+                <outlet property="filterButton" destination="bqp-qO-Ew2" id="cU6-n7-qsN"/>
+                <outlet property="filterLeadingConstraint" destination="pwE-2N-57G" id="dN3-WV-Vhb"/>
+                <outlet property="filterTopConstraint" destination="Aam-u4-C2q" id="dRW-3g-j0X"/>
+                <outlet property="filterView" destination="77p-Py-l0E" id="vYQ-ka-Fzy"/>
+                <outlet property="pickerView" destination="up2-JX-pm4" id="5pt-oM-U0w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" alpha="0.0" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPL-Dc-oMr">
-                    <rect key="frame" x="0.0" y="659" width="375" height="224"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="baZ-TQ-5wh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="224"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sV8-EM-oiX">
-                                <rect key="frame" x="8" y="0.0" width="375" height="216"/>
-                            </pickerView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="sV8-EM-oiX" secondAttribute="trailing" constant="-8" id="0Sm-JA-nh5"/>
-                            <constraint firstAttribute="bottom" secondItem="sV8-EM-oiX" secondAttribute="bottom" constant="8" id="Ezm-uf-axD"/>
-                            <constraint firstItem="sV8-EM-oiX" firstAttribute="top" secondItem="baZ-TQ-5wh" secondAttribute="top" id="Yp6-Bl-19e"/>
-                            <constraint firstItem="sV8-EM-oiX" firstAttribute="leading" secondItem="baZ-TQ-5wh" secondAttribute="leading" constant="8" id="o1H-es-CTa"/>
-                        </constraints>
-                    </view>
-                    <blurEffect style="light"/>
-                </visualEffectView>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77p-Py-l0E">
+                    <rect key="frame" x="323" y="615" width="44" height="44"/>
+                    <subviews>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="up2-JX-pm4">
+                            <rect key="frame" x="0.0" y="-86" width="44" height="216"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="up2-JX-pm4" firstAttribute="centerX" secondItem="77p-Py-l0E" secondAttribute="centerX" id="3oa-Kk-8S5"/>
+                        <constraint firstItem="up2-JX-pm4" firstAttribute="leading" secondItem="77p-Py-l0E" secondAttribute="leading" id="Tyz-M0-anc"/>
+                        <constraint firstItem="up2-JX-pm4" firstAttribute="centerY" secondItem="77p-Py-l0E" secondAttribute="centerY" id="zWc-03-BRs"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="22"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqp-qO-Ew2">
+                    <rect key="frame" x="323" y="615" width="44" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Aad-kd-oAi"/>
+                        <constraint firstAttribute="width" constant="44" id="tcC-AV-l5d"/>
+                    </constraints>
+                    <state key="normal" image="notice"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="22"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="filterAction:" destination="-1" eventType="touchUpInside" id="OKl-y3-5MO"/>
+                    </connections>
+                </button>
             </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="RPL-Dc-oMr" secondAttribute="trailing" id="iSx-NE-z3x"/>
-                <constraint firstAttribute="bottom" secondItem="RPL-Dc-oMr" secondAttribute="bottom" constant="-216" id="jRR-Aa-834"/>
-                <constraint firstItem="RPL-Dc-oMr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="omF-Jc-TnK"/>
+                <constraint firstItem="77p-Py-l0E" firstAttribute="bottom" secondItem="bqp-qO-Ew2" secondAttribute="bottom" id="97P-Vp-cE5"/>
+                <constraint firstItem="77p-Py-l0E" firstAttribute="top" secondItem="bqp-qO-Ew2" secondAttribute="top" id="Aam-u4-C2q"/>
+                <constraint firstAttribute="bottom" secondItem="bqp-qO-Ew2" secondAttribute="bottom" constant="8" id="Gc2-4j-Xa5"/>
+                <constraint firstItem="77p-Py-l0E" firstAttribute="trailing" secondItem="bqp-qO-Ew2" secondAttribute="trailing" id="bvN-Zn-PQm"/>
+                <constraint firstItem="77p-Py-l0E" firstAttribute="leading" secondItem="bqp-qO-Ew2" secondAttribute="leading" id="pwE-2N-57G"/>
+                <constraint firstAttribute="trailing" secondItem="bqp-qO-Ew2" secondAttribute="trailing" constant="8" id="xXJ-Sn-jjj"/>
             </constraints>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="gRt-jQ-5KV" appends="YES" id="xs7-7D-As8"/>
@@ -56,4 +84,7 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="notice" width="20" height="20"/>
+    </resources>
 </document>

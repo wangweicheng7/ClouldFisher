@@ -14,9 +14,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    var appid: Int?
+    var version: String?
+    
     let infoView = PWSquareInfoView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 0))
     
-    var dataSource = [PWAppInfoModel]()
+    private var dataSource = [PWAppInfoModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +34,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self?.requestData(with: lastInfo?.id, desc: true)
         }
         
-        tableView.toRefreshAction {
-            let filter = PWFilterController()
-            self.present(filter, animated: true, completion: nil)
-        }
-        
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             infoLabel.text = "putao.wangweicheng.com v \(version)"
         }
         
         view.addSubview(infoView)
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "notice"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(noticeAction))
         
         requestData(with: nil, desc: true)
         checkUpdate()
@@ -50,10 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var localNotification: UILocalNotification = {
         let localNotification = UILocalNotification()
-        localNotification.alertAction = ""
         localNotification.hasAction = true
-        localNotification.alertLaunchImage = ""
-        localNotification.alertTitle = "新消息"
         localNotification.applicationIconBadgeNumber = 1
         return localNotification
     }()
@@ -65,6 +58,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             parameter["id"] = id
         }
         parameter["pull"] = desc
+        if let appid = appid {
+            parameter["appid"] = appid
+        }
+        if let version = version {
+            parameter["version"] = version
+        }
         
         PWRequest.request(with: Api.app_list, parameter: parameter) { (result, success, code) in
             
@@ -84,6 +83,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: self.dataSource.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
         }
+    }
+    
+    @IBAction func filterAction(_ sender: UIButton) {
+        let filter = PWFilterController { [weak self] (appid, version) in
+            self?.appid = appid
+            self?.version = version
+            self?.requestData(with: nil, desc: true)
+        }
+        self.present(filter, animated: false, completion: nil)
     }
     
     func checkUpdate() {
