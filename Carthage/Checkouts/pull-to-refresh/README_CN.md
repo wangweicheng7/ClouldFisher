@@ -1,14 +1,12 @@
 
-<center>![logo](logo.png)</center>
+![logo](logo.png)
 
-<center>
 [![Travis](https://travis-ci.org/eggswift/pull-to-refresh.svg?branch=master)](https://travis-ci.org/eggswift/pull-to-refresh)
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift v2.3 v3](https://img.shields.io/badge/Swift-v2.3 v3-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Twitter](https://img.shields.io/badge/Twitter-@lihao_iOS-blue.svg?style=flat)](https://twitter.com/lihao_iOS)
 [![Twitter](https://img.shields.io/badge/Weibo-@李昊_____-orange.svg?style=flat)](http://weibo.com/5120522686/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
-</center>
 
 ###[For English](README.md)
 
@@ -45,7 +43,7 @@ pod "ESPullToRefresh"
 ### Carthage
 
 ```ruby
-github "eggswift/ESPullToRefresh"
+github "eggswift/pull-to-refresh"
 ```
 
 ### 手动安装
@@ -75,26 +73,26 @@ import ESPullToRefresh
 
 ```swift
 self.tableView.es_addPullToRefresh {
-    [weak self] in
+    [unowned self] in
     /// 在这里做刷新相关事件
     /// ...
     /// 如果你的刷新事件成功，设置completion自动重置footer的状态
-    self?.tableView.es_stopPullToRefresh(completion: true)
+    self.tableView.es_stopPullToRefresh(completion: true)
     /// 设置ignoreFooter来处理不需要显示footer的情况
-    self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
+    self.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
 }
 ```
 
 设置默认加载更多组件
 ``` swift
 self.tableView.es_addInfiniteScrolling {
-    [weak self] in
+    [unowned self] in
     /// 在这里做加载更多相关事件
     /// ...
     /// 如果你的加载更多事件成功，调用es_stopLoadingMore()重置footer状态
-    self?.tableView.es_stopLoadingMore()
+    self.tableView.es_stopLoadingMore()
     /// 通过es_noticeNoMoreData()设置footer暂无数据状态
-    self?.tableView.es_noticeNoMoreData()
+    self.tableView.es_noticeNoMoreData()
 }
 ```
 

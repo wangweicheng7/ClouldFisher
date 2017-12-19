@@ -25,15 +25,15 @@ extension Data {
 
 struct Api {
     
-    static let baseUrl      = "https://putao.wangweicheng.com"
+    static let baseUrl      = "https://pomelo.tech"
     
-    static let app_list     = "/app_list"
+    static let app_list     = "/api/app_list"
     
-    static let update       = "/update"
+    static let update       = "/api/update"
     
-    static let device_token = "/upload_token"
+    static let device_token = "/api/upload_token"
     
-    static let notice       = "/notice_switch"
+    static let notice       = "/api/notice_switch"
     
     static let file         = "/file/"
     

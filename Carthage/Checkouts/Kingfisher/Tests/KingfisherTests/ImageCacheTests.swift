@@ -76,14 +76,14 @@ class ImageCacheTests: XCTestCase {
         let expectation = self.expectation(description: "wait for clearing disk cache")
         let key = testKeys[0]
         
-        cache.store(testImage, original: testImageData as? Data, forKey: key, toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data, forKey: key, toDisk: true) {
             self.cache.clearMemoryCache()
-            let cacheResult = self.cache.isImageCached(forKey: key)
+            let cacheResult = self.cache.imageCachedType(forKey: key)
             XCTAssertTrue(cacheResult.cached, "Should be cached")
-            XCTAssert(cacheResult.cacheType == .disk, "Should be cached in disk")
+            XCTAssert(cacheResult == .disk, "Should be cached in disk")
         
             self.cache.clearDiskCache {
-                let cacheResult = self.cache.isImageCached(forKey: key)
+                let cacheResult = self.cache.imageCachedType(forKey: key)
                 XCTAssertFalse(cacheResult.cached, "Should be not cached")
                 expectation.fulfill()
             }
@@ -94,7 +94,7 @@ class ImageCacheTests: XCTestCase {
     func testClearMemoryCache() {
         let expectation = self.expectation(description: "wait for retrieving image")
         
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[0], toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data, forKey: testKeys[0], toDisk: true) { () -> () in
             self.cache.clearMemoryCache()
             self.cache.retrieveImage(forKey: testKeys[0], options: nil, completionHandler: { (image, type) -> () in
                 XCTAssert(image != nil && type == .disk, "Should be cached in disk. But \(type)")
@@ -145,7 +145,7 @@ class ImageCacheTests: XCTestCase {
             } catch _ {
                 files = nil
             }
-            XCTAssert(files?.count == 4, "All test images should be at locaitons. Expected 4, actually \(files?.count)")
+            XCTAssert(files?.count == 4, "All test images should be at locaitons. Expected 4, actually \(String(describing: files?.count))")
             
             expectation.fulfill()
         }
@@ -159,7 +159,7 @@ class ImageCacheTests: XCTestCase {
         let URLString = testKeys[0]
         let url = URL(string: URLString)!
         
-        let exists = cache.isImageCached(forKey: url.cacheKey).cached
+        let exists = cache.imageCachedType(forKey: url.cacheKey).cached
         XCTAssertFalse(exists)
         
         cache.retrieveImage(forKey: URLString, options: nil, completionHandler: { (image, type) -> () in
@@ -172,7 +172,7 @@ class ImageCacheTests: XCTestCase {
                     XCTAssertNotNil(image, "Should be cached (memory or disk)")
                     XCTAssertEqual(type, .memory)
 
-                    let exists = self.cache.isImageCached(forKey: url.cacheKey).cached
+                    let exists = self.cache.imageCachedType(forKey: url.cacheKey).cached
                     XCTAssertTrue(exists, "Image should exist in the cache (memory or disk)")
 
                     self.cache.clearMemoryCache()
@@ -180,7 +180,7 @@ class ImageCacheTests: XCTestCase {
                         XCTAssertNotNil(image, "Should be cached (disk)")
                         XCTAssertEqual(type, CacheType.disk)
                         
-                        let exists = self.cache.isImageCached(forKey: url.cacheKey).cached
+                        let exists = self.cache.imageCachedType(forKey: url.cacheKey).cached
                         XCTAssertTrue(exists, "Image should exist in the cache (disk)")
                         
                         expectation.fulfill()
@@ -196,7 +196,7 @@ class ImageCacheTests: XCTestCase {
         let URLString = testKeys[0]
         let url = URL(string: URLString)!
         
-        let exists = cache.isImageCached(forKey: url.cacheKey).cached
+        let exists = cache.imageCachedType(forKey: url.cacheKey).cached
         XCTAssertFalse(exists)
     }
 
@@ -207,7 +207,7 @@ class ImageCacheTests: XCTestCase {
         let URLString = testKeys[0]
         let url = URL(string: URLString)!
         
-        let exists = cache.isImageCached(forKey: url.cacheKey).cached
+        let exists = cache.imageCachedType(forKey: url.cacheKey).cached
         XCTAssertFalse(exists)
         
         cache.retrieveImage(forKey: URLString, options: nil, completionHandler: { (image, type) -> () in
@@ -220,7 +220,7 @@ class ImageCacheTests: XCTestCase {
                     XCTAssertNotNil(image, "Should be cached (memory or disk)")
                     XCTAssertEqual(type, .memory)
                     
-                    let exists = self.cache.isImageCached(forKey: url.cacheKey).cached
+                    let exists = self.cache.imageCachedType(forKey: url.cacheKey).cached
                     XCTAssertTrue(exists, "Image should exist in the cache (memory or disk)")
                     
                     self.cache.clearMemoryCache()
@@ -228,7 +228,7 @@ class ImageCacheTests: XCTestCase {
                         XCTAssertNotNil(image, "Should be cached (disk)")
                         XCTAssertEqual(type, CacheType.disk)
                         
-                        let exists = self.cache.isImageCached(forKey: url.cacheKey).cached
+                        let exists = self.cache.imageCachedType(forKey: url.cacheKey).cached
                         XCTAssertTrue(exists, "Image should exist in the cache (disk)")
                         
                         let cachePath = self.cache.cachePath(forKey: url.cacheKey)
@@ -262,9 +262,9 @@ class ImageCacheTests: XCTestCase {
     func testIsImageCachedForKey() {
         let expectation = self.expectation(description: "wait for caching image")
         
-        XCTAssert(self.cache.isImageCached(forKey: testKeys[0]).cached == false, "This image should not be cached yet.")
-        self.cache.store(testImage, original: testImageData as? Data, forKey: testKeys[0], toDisk: true) { () -> () in
-            XCTAssert(self.cache.isImageCached(forKey: testKeys[0]).cached == true, "This image should be already cached.")
+        XCTAssert(self.cache.imageCachedType(forKey: testKeys[0]).cached == false, "This image should not be cached yet.")
+        self.cache.store(testImage, original: testImageData as Data, forKey: testKeys[0], toDisk: true) { () -> () in
+            XCTAssert(self.cache.imageCachedType(forKey: testKeys[0]).cached == true, "This image should be already cached.")
             expectation.fulfill()
         }
 
@@ -274,7 +274,7 @@ class ImageCacheTests: XCTestCase {
     func testRetrievingImagePerformance() {
 
         let expectation = self.expectation(description: "wait for retrieving image")
-        self.cache.store(testImage, original: testImageData as? Data, forKey: testKeys[0], toDisk: true) { () -> () in
+        self.cache.store(testImage, original: testImageData as Data, forKey: testKeys[0], toDisk: true) { () -> () in
             self.measure({ () -> Void in
                 for _ in 1 ..< 200 {
                     _ = self.cache.retrieveImageInDiskCache(forKey: testKeys[0])
@@ -289,7 +289,7 @@ class ImageCacheTests: XCTestCase {
     func testCleanDiskCacheNotification() {
         let expectation = self.expectation(description: "wait for retrieving image")
         
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[0], toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[0], toDisk: true) { () -> () in
 
             self.observer = NotificationCenter.default.addObserver(forName: .KingfisherDidCleanDiskCache, object: self.cache, queue: OperationQueue.main, using: { (noti) -> Void in
 
@@ -321,7 +321,7 @@ class ImageCacheTests: XCTestCase {
         let expectation = self.expectation(description: "wait for retrieving image")
         let p = RoundCornerImageProcessor(cornerRadius: 40)
         
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[0], toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[0], toDisk: true) { () -> () in
             
             self.cache.retrieveImage(forKey: testKeys[0], options: [.processor(p)], completionHandler: { (image, type) -> () in
                 
@@ -338,7 +338,7 @@ class ImageCacheTests: XCTestCase {
         let expectation = self.expectation(description: "wait for retrieving image")
         let p = RoundCornerImageProcessor(cornerRadius: 40)
         
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[0], processorIdentifier: p.identifier,toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[0], processorIdentifier: p.identifier,toDisk: true) { () -> () in
             
             self.cache.retrieveImage(forKey: testKeys[0], options: [.processor(p)], completionHandler: { (image, type) -> () in
                 
@@ -350,31 +350,73 @@ class ImageCacheTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
     }
-    
+
+#if os(iOS) || os(tvOS) || os(watchOS)
+    func testGettingMemoryCachedImageCouldBeModified() {
+
+        let expectation = self.expectation(description: "wait for retrieving image")
+
+        var modifierCalled = false
+        let modifier = AnyImageModifier { image in
+            modifierCalled = true
+            return image.withRenderingMode(.alwaysTemplate)
+        }
+
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[0]) {
+            self.cache.retrieveImage(forKey: testKeys[0], options: [.imageModifier(modifier)]) {
+                image, _ in
+                XCTAssertTrue(modifierCalled)
+                XCTAssertEqual(image?.renderingMode, .alwaysTemplate)
+                expectation.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testGettingDiskCachedImageCouldBeModified() {
+        let expectation = self.expectation(description: "wait for retrieving image")
+
+        var modifierCalled = false
+        let modifier = AnyImageModifier { image in
+            modifierCalled = true
+            return image.withRenderingMode(.alwaysTemplate)
+        }
+
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[0]) {
+            self.cache.clearMemoryCache()
+            self.cache.retrieveImage(forKey: testKeys[0], options: [.imageModifier(modifier)]) {
+                image, _ in
+                XCTAssertTrue(modifierCalled)
+                XCTAssertEqual(image?.renderingMode, .alwaysTemplate)
+                expectation.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+#endif
+
     // MARK: - Helper
     func storeMultipleImages(_ completionHandler:@escaping ()->()) {
         
         let group = DispatchGroup()
         
         group.enter()
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[0], toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[0], toDisk: true) { () -> () in
             group.leave()
         }
         group.enter()
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[1], toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[1], toDisk: true) { () -> () in
             group.leave()
         }
         group.enter()
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[2], toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[2], toDisk: true) { () -> () in
             group.leave()
         }
         group.enter()
-        cache.store(testImage, original: testImageData as? Data, forKey: testKeys[3], toDisk: true) { () -> () in
+        cache.store(testImage, original: testImageData as Data?, forKey: testKeys[3], toDisk: true) { () -> () in
             group.leave()
         }
         
-        group.notify(queue: DispatchQueue.main) {
-            completionHandler()
-        }
+        group.notify(queue: .main, execute: completionHandler)
     }
 }

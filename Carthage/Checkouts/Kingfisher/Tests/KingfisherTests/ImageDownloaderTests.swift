@@ -68,7 +68,7 @@ class ImageDownloaderTests: XCTestCase {
             return
         }) { (image, error, imageURL, data) -> () in
             expectation.fulfill()
-            XCTAssert(image != nil, "Download should be able to finished for URL: \(imageURL)")
+            XCTAssert(image != nil, "Download should be able to finished for URL: \(String(describing: imageURL))")
         }
         
         waitForExpectations(timeout: 5, handler: nil)
@@ -86,16 +86,13 @@ class ImageDownloaderTests: XCTestCase {
                 downloader.downloadImage(with: url, options: nil, progressBlock: { (receivedSize, totalSize) -> () in
                     
                 }, completionHandler: { (image, error, imageURL, data) -> () in
-                    XCTAssert(image != nil, "Download should be able to finished for URL: \(imageURL).")
+                    XCTAssert(image != nil, "Download should be able to finished for URL: \(String(describing: imageURL)).")
                     group.leave()
                 })
             }
         }
         
-        group.notify(queue: DispatchQueue.main) { () -> Void in
-            expectation.fulfill()
-        }
-        
+        group.notify(queue: .main, execute: expectation.fulfill)
         waitForExpectations(timeout: 5, handler: nil)
     }
     
@@ -111,16 +108,13 @@ class ImageDownloaderTests: XCTestCase {
             downloader.downloadImage(with: URL(string: URLString)!, options: nil, progressBlock: { (receivedSize, totalSize) -> () in
                 
                 }) { (image, error, imageURL, data) -> () in
-                    XCTAssert(image != nil, "Download should be able to finished for URL: \(imageURL).")
+                    XCTAssert(image != nil, "Download should be able to finished for URL: \(String(describing: imageURL)).")
                     group.leave()
                     
             }
         }
 
-        group.notify(queue: DispatchQueue.main) { () -> Void in
-            expectation.fulfill()
-        }
-        
+        group.notify(queue: .main, execute: expectation.fulfill)
         waitForExpectations(timeout: 5, handler: nil)
     }
     
@@ -136,7 +130,7 @@ class ImageDownloaderTests: XCTestCase {
         downloader.downloadImage(with: someURL, options: [.requestModifier(modifier)], progressBlock: { (receivedSize, totalSize) -> () in
             
         }) { (image, error, imageURL, data) -> () in
-            XCTAssert(image != nil, "Download should be able to finished for URL: \(imageURL).")
+            XCTAssert(image != nil, "Download should be able to finished for URL: \(String(describing: imageURL)).")
             XCTAssertEqual(imageURL!, URL(string: URLString)!, "The returned imageURL should be the replaced one")
             expectation.fulfill()
         }
@@ -189,13 +183,13 @@ class ImageDownloaderTests: XCTestCase {
         
         downloader.downloadImage(with: url, progressBlock: nil, completionHandler: { (image, error, imageURL, data) -> () in
             XCTAssertNotNil(error, "Error should not be nil")
-            XCTAssert(error?.code == NSURLErrorServerCertificateUntrusted || error?.code == NSURLErrorSecureConnectionFailed, "Error should be NSURLErrorServerCertificateUntrusted, but \(error)")
+            XCTAssert(error?.code == NSURLErrorServerCertificateUntrusted || error?.code == NSURLErrorSecureConnectionFailed, "Error should be NSURLErrorServerCertificateUntrusted, but \(String(describing: error))")
             expectation.fulfill()
             LSNocilla.sharedInstance().start()
         })
         
         waitForExpectations(timeout: 20) { (error) in
-            XCTAssertNil(error, "\(error)")
+            XCTAssertNil(error, "\(String(describing: error))")
             LSNocilla.sharedInstance().start()
         }
     }
@@ -261,14 +255,15 @@ class ImageDownloaderTests: XCTestCase {
         let url = URL(string: URLString)!
         
         var progressBlockIsCalled = false
-        var completionBlockIsCalled = false
         
         let downloadTask = downloader.downloadImage(with: url, progressBlock: { (receivedSize, totalSize) -> () in
                 progressBlockIsCalled = true
             }) { (image, error, imageURL, originalData) -> () in
                 XCTAssertNotNil(error)
                 XCTAssertEqual(error!.code, NSURLErrorCancelled)
-                completionBlockIsCalled = true
+                XCTAssert(progressBlockIsCalled == false, "ProgressBlock should not be called since it is canceled.")
+                
+                expectation.fulfill()
         }
         
         XCTAssertNotNil(downloadTask)
@@ -276,12 +271,45 @@ class ImageDownloaderTests: XCTestCase {
         downloadTask!.cancel()
         _ = stub!.go()
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * 0.09)) / Double(NSEC_PER_SEC)) { () -> Void in
-            expectation.fulfill()
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    // Issue 532 https://github.com/onevcat/Kingfisher/issues/532#issuecomment-305644311
+    func testCancelThenRestartSameDownload() {
+        let expectation = self.expectation(description: "wait for downloading")
+        
+        let URLString = testKeys[0]
+        let stub = stubRequest("GET", URLString).andReturn(200)?.withBody(testImageData)?.delay()
+        let url = URL(string: URLString)!
+        
+        var progressBlockIsCalled = false
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        let downloadTask = downloader.downloadImage(with: url, progressBlock: { (receivedSize, totalSize) -> () in
+            progressBlockIsCalled = true
+        }) { (image, error, imageURL, originalData) -> () in
+            XCTAssertNotNil(error)
+            XCTAssertEqual(error!.code, NSURLErrorCancelled)
             XCTAssert(progressBlockIsCalled == false, "ProgressBlock should not be called since it is canceled.")
-            XCTAssert(completionBlockIsCalled == true, "CompletionBlock should be called with error.")
+            group.leave()
         }
         
+        XCTAssertNotNil(downloadTask)
+        
+        downloadTask!.cancel()
+        _ = stub!.go()
+        
+        group.enter()
+        downloader.downloadImage(with: url, progressBlock: { (receivedSize, totalSize) -> () in
+            progressBlockIsCalled = true
+        }) { (image, error, imageURL, originalData) -> () in
+            XCTAssertNotNil(image)
+            group.leave()
+        }
+        
+        group.notify(queue: .main, execute: expectation.fulfill)
         waitForExpectations(timeout: 5, handler: nil)
     }
     
@@ -308,7 +336,7 @@ class ImageDownloaderTests: XCTestCase {
             
         }) { (image, error, imageURL, data) -> () in
             expectation.fulfill()
-            XCTAssert(image != nil, "Download should be able to finished for URL: \(imageURL)")
+            XCTAssert(image != nil, "Download should be able to finished for URL: \(String(describing: imageURL))")
             XCTAssertFalse(image!.renderEqual(to: testImage), "The processed image should not equal to the original one.")
             XCTAssertTrue(image!.renderEqual(to: roundcornered), "The processed image should equal to the one directly processed from original one.")
             XCTAssertEqual(NSData(data: data!), testImageData, "But the original data should equal each other.")
@@ -352,6 +380,57 @@ class ImageDownloaderTests: XCTestCase {
         }
 
         waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testDownloadedDataCouldBeModified() {
+        let expectation = self.expectation(description: "wait for downloading image")
+        
+        let URLString = testKeys[0]
+        _ = stubRequest("GET", URLString).andReturn(200)?.withBody(testImageData)
+        
+        let url = URL(string: URLString)!
+        
+        downloader.delegate = self
+        downloader.downloadImage(with: url) { image, error, imageURL, data in
+            XCTAssertNil(image)
+            XCTAssertNotNil(error)
+            XCTAssertEqual(error?.code, KingfisherError.badData.rawValue)
+            self.downloader.delegate = nil
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+#if os(iOS) || os(tvOS) || os(watchOS)
+    func testDownloadedImageCouldBeModified() {
+        let expectation = self.expectation(description: "wait for downloading image")
+
+        let URLString = testKeys[0]
+        _ = stubRequest("GET", URLString).andReturn(200)?.withBody(testImageData)
+
+        let url = URL(string: URLString)!
+
+        var modifierCalled = false
+        let modifier = AnyImageModifier { image in
+            modifierCalled = true
+            return image.withRenderingMode(.alwaysTemplate)
+        }
+
+        downloader.downloadImage(with: url, options: [.imageModifier(modifier)]) {
+            image, _, _, _ in
+            XCTAssertTrue(modifierCalled)
+            XCTAssertEqual(image?.renderingMode, .alwaysTemplate)
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+#endif
+}
+
+extension ImageDownloaderTests: ImageDownloaderDelegate {
+    func imageDownloader(_ downloader: ImageDownloader, didDownload data: Data, for url: URL) -> Data? {
+        return nil
     }
 }
 

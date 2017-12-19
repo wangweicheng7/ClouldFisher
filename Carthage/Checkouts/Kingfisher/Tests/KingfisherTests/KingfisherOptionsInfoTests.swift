@@ -54,12 +54,14 @@ class KingfisherOptionsInfoTests: XCTestCase {
         
         XCTAssertEqual(options.downloadPriority, URLSessionTask.defaultPriority)
         XCTAssertFalse(options.forceRefresh)
+        XCTAssertFalse(options.fromMemoryCacheOrRefresh)
         XCTAssertFalse(options.cacheMemoryOnly)
         XCTAssertFalse(options.backgroundDecode)
         XCTAssertEqual(options.callbackDispatchQueue.label, DispatchQueue.main.label)
         XCTAssertEqual(options.scaleFactor, 1.0)
         XCTAssertFalse(options.keepCurrentImageWhileLoading)
         XCTAssertFalse(options.onlyLoadFirstFrame)
+        XCTAssertFalse(options.cacheOriginalImage)
     }
     
 
@@ -83,6 +85,7 @@ class KingfisherOptionsInfoTests: XCTestCase {
             .transition(transition),
             .downloadPriority(0.8),
             .forceRefresh,
+            .fromMemoryCacheOrRefresh,
             .cacheMemoryOnly,
             .onlyFromCache,
             .backgroundDecode,
@@ -91,7 +94,8 @@ class KingfisherOptionsInfoTests: XCTestCase {
             .requestModifier(testModifier),
             .processor(processor),
             .keepCurrentImageWhileLoading,
-            .onlyLoadFirstFrame
+            .onlyLoadFirstFrame,
+            .cacheOriginalImage
         ]
         
         XCTAssertTrue(options.targetCache === cache)
@@ -106,6 +110,7 @@ class KingfisherOptionsInfoTests: XCTestCase {
         
         XCTAssertEqual(options.downloadPriority, 0.8)
         XCTAssertTrue(options.forceRefresh)
+        XCTAssertTrue(options.fromMemoryCacheOrRefresh)
         XCTAssertTrue(options.cacheMemoryOnly)
         XCTAssertTrue(options.onlyFromCache)
         XCTAssertTrue(options.backgroundDecode)
@@ -116,6 +121,18 @@ class KingfisherOptionsInfoTests: XCTestCase {
         XCTAssertEqual(options.processor.identifier, processor.identifier)
         XCTAssertTrue(options.keepCurrentImageWhileLoading)
         XCTAssertTrue(options.onlyLoadFirstFrame)
+        XCTAssertTrue(options.cacheOriginalImage)
+    }
+    
+    func testOptionCouldBeOverwritten() {
+        var options: KingfisherOptionsInfo = [.downloadPriority(0.5), .onlyFromCache]
+        XCTAssertEqual(options.downloadPriority, 0.5)
+        
+        options.append(.downloadPriority(0.8))
+        XCTAssertEqual(options.downloadPriority, 0.8)
+        
+        options.append(.downloadPriority(1.0))
+        XCTAssertEqual(options.downloadPriority, 1.0)
     }
 }
 

@@ -25,7 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             center.delegate = self
             center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (result, error) in
                 if result {
-                    application.registerForRemoteNotifications()
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
+                    }
                 }
             })
         } else {

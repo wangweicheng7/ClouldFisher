@@ -30,58 +30,53 @@ class TextViewController: UIViewController {
         textView.textContainerInset = UIEdgeInsets.init(top: 12, left: 8, bottom: 12, right: 8)
         self.view.addSubview(textView)
         
-        textView.es_addPullToRefresh {
+        textView.es.addPullToRefresh {
             [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                weakSelf.num = 0
+                self.num = 0
                 let style = NSMutableParagraphStyle.init()
                 style.lineSpacing = 0.0
                 style.firstLineHeadIndent = 10.0
                 style.alignment = .justified
-                weakSelf.textView.attributedText = NSAttributedString.init(string: weakSelf.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
-                weakSelf.textView.es_stopPullToRefresh()
+                self?.textView.attributedText = NSAttributedString.init(string: self.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
+                self?.textView.es.stopPullToRefresh()
             }
         }
         
-        textView.es_addInfiniteScrolling {
+        textView.es.addInfiniteScrolling {
             [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                weakSelf.num += 1
-                var str: String = weakSelf.text1
-                if weakSelf.num >= 1 {
-                    str += weakSelf.text2
+                var i = self?.num ?? 0
+                i += 1
+                var str: String = self?.text1 ?? ""
+                if i >= 1 {
+                    str += self?.text2 ?? ""
                 }
-                if weakSelf.num >= 2 {
-                    str += weakSelf.text3
+                if i >= 2 {
+                    str += self?.text3 ?? ""
                 }
-                if weakSelf.num >= 3 {
-                    str += weakSelf.text4
+                if i >= 3 {
+                    str += self?.text4 ?? ""
                 }
-                if weakSelf.num >= 4 {
-                    str += weakSelf.text5
+                if i >= 4 {
+                    str += self?.text5 ?? ""
                 }
-                if weakSelf.num >= 5 {
-                    str += weakSelf.text6
+                if i >= 5 {
+                    str += self?.text6 ?? ""
                 }
-                if weakSelf.num >= 6 {
-                    str += weakSelf.text7
+                if i >= 6 {
+                    str += self?.text7 ?? ""
                 }
-                if weakSelf.num >= 7 {
-                    weakSelf.textView.es_noticeNoMoreData()
+                if i >= 7 {
+                    self?.textView.es.noticeNoMoreData()
                 } else {
                     let style = NSMutableParagraphStyle.init()
                     style.lineSpacing = 0.0
                     style.firstLineHeadIndent = 10.0
                     style.alignment = .justified
-                    weakSelf.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
+                    self?.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
 
-                    weakSelf.textView.es_stopLoadingMore()
+                    self?.textView.es.stopLoadingMore()
                 }
             }
         }
@@ -89,7 +84,7 @@ class TextViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.textView.es_startPullToRefresh()
+        self.textView.es.startPullToRefresh()
     }
     
     override func viewDidLayoutSubviews() {

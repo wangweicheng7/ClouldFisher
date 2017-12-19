@@ -356,7 +356,7 @@ open class DataRequest: Request {
         func task(session: URLSession, adapter: RequestAdapter?, queue: DispatchQueue) throws -> URLSessionTask {
             do {
                 let urlRequest = try self.urlRequest.adapt(using: adapter)
-                return queue.syncResult { session.dataTask(with: urlRequest) }
+                return queue.sync { session.dataTask(with: urlRequest) }
             } catch {
                 throw AdaptError(error: error)
             }
@@ -364,6 +364,14 @@ open class DataRequest: Request {
     }
 
     // MARK: Properties
+
+    /// The request sent or to be sent to the server.
+    open override var request: URLRequest? {
+        if let request = super.request { return request }
+        if let requestable = originalTask as? Requestable { return requestable.urlRequest }
+
+        return nil
+    }
 
     /// The progress of fetching the response data from the server for the request.
     open var progress: Progress { return dataDelegate.progress }
@@ -451,9 +459,9 @@ open class DownloadRequest: Request {
                 switch self {
                 case let .request(urlRequest):
                     let urlRequest = try urlRequest.adapt(using: adapter)
-                    task = queue.syncResult { session.downloadTask(with: urlRequest) }
+                    task = queue.sync { session.downloadTask(with: urlRequest) }
                 case let .resumeData(resumeData):
-                    task = queue.syncResult { session.downloadTask(withResumeData: resumeData) }
+                    task = queue.sync { session.downloadTask(withResumeData: resumeData) }
                 }
 
                 return task
@@ -464,6 +472,17 @@ open class DownloadRequest: Request {
     }
 
     // MARK: Properties
+
+    /// The request sent or to be sent to the server.
+    open override var request: URLRequest? {
+        if let request = super.request { return request }
+
+        if let downloadable = originalTask as? Downloadable, case let .request(urlRequest) = downloadable {
+            return urlRequest
+        }
+
+        return nil
+    }
 
     /// The resume data of the underlying download task if available after a failure.
     open var resumeData: Data? { return downloadDelegate.resumeData }
@@ -545,13 +564,13 @@ open class UploadRequest: DataRequest {
                 switch self {
                 case let .data(data, urlRequest):
                     let urlRequest = try urlRequest.adapt(using: adapter)
-                    task = queue.syncResult { session.uploadTask(with: urlRequest, from: data) }
+                    task = queue.sync { session.uploadTask(with: urlRequest, from: data) }
                 case let .file(url, urlRequest):
                     let urlRequest = try urlRequest.adapt(using: adapter)
-                    task = queue.syncResult { session.uploadTask(with: urlRequest, fromFile: url) }
+                    task = queue.sync { session.uploadTask(with: urlRequest, fromFile: url) }
                 case let .stream(_, urlRequest):
                     let urlRequest = try urlRequest.adapt(using: adapter)
-                    task = queue.syncResult { session.uploadTask(withStreamedRequest: urlRequest) }
+                    task = queue.sync { session.uploadTask(withStreamedRequest: urlRequest) }
                 }
 
                 return task
@@ -562,6 +581,18 @@ open class UploadRequest: DataRequest {
     }
 
     // MARK: Properties
+
+    /// The request sent or to be sent to the server.
+    open override var request: URLRequest? {
+        if let request = super.request { return request }
+
+        guard let uploadable = originalTask as? Uploadable else { return nil }
+
+        switch uploadable {
+        case .data(_, let urlRequest), .file(_, let urlRequest), .stream(_, let urlRequest):
+            return urlRequest
+        }
+    }
 
     /// The progress of uploading the payload to the server for the upload request.
     open var uploadProgress: Progress { return uploadDelegate.uploadProgress }
@@ -603,9 +634,9 @@ open class StreamRequest: Request {
 
             switch self {
             case let .stream(hostName, port):
-                task = queue.syncResult { session.streamTask(withHostName: hostName, port: port) }
+                task = queue.sync { session.streamTask(withHostName: hostName, port: port) }
             case let .netService(netService):
-                task = queue.syncResult { session.streamTask(with: netService) }
+                task = queue.sync { session.streamTask(with: netService) }
             }
 
             return task
